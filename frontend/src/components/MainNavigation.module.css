@@ -1,0 +1,30 @@
+.header{
+    display: flex;
+}
+.header-nav{
+    align-self: center;
+    row-gap: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+.title{
+    margin: 0;
+}
+.list{
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+}
+.list a{
+    margin: 0 30px;
+    text-decoration: none;
+    color: #9da1a3;
+}
+
+.list a:hover,
+.list a.active{
+    color: black;
+    text-decoration: underline;
+}
