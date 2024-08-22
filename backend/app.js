@@ -2,7 +2,7 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 
-const { getAll } = require('./data/products');
+const { getAll, getProduct } = require('./data/products');
 
 const app = express();
 app.use(bodyParser.json());
@@ -21,6 +21,12 @@ app.get('/products', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+app.get('/products/:id', async (req, res, next) => {
+  const product = await getProduct(req.params.id);
+  console.log(product);
+  res.json({ product: product });
 });
 
 app.use((error, req, res, next) => {

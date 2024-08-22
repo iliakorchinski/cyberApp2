@@ -4,19 +4,26 @@ import HomePage from './pages/Home';
 import AboutPage from './pages/About';
 import ProductsPage, { loader as productLoader } from './pages/Products';
 import RootLayout from './pages/Root';
+import ProductDetails, {
+  loader as ProductDetailsLoader,
+} from './pages/ProductDetails';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/about', element: <AboutPage /> },
+      { index: true, element: <HomePage /> },
+      { path: 'about', element: <AboutPage /> },
       {
-        path: '/products',
+        path: 'products',
         element: <ProductsPage />,
         loader: productLoader,
-        children: [{ path: ':id' }],
+      },
+      {
+        path: '/products/:id',
+        element: <ProductDetails />,
+        loader: ProductDetailsLoader,
       },
     ],
   },
