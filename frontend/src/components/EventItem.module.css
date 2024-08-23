@@ -12,3 +12,18 @@
   text-decoration: none;
   color: black;
 }
+
+.navigate-container {
+  display: flex;
+  justify-content: center;
+}
+.navigate {
+  text-decoration: underline;
+  color: black;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.navigate:hover {
+  color: tomato;
+}

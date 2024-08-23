@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import classes from './EventItemDetails.module.css';
 
 export default function EventItemDetails({ data }) {
@@ -9,9 +10,9 @@ export default function EventItemDetails({ data }) {
       </p>
       <p>{data.description}</p>
       <div>
-        <button>Edit</button>
-        <button>Delete</button>
-        <button>Add to cart</button>
+        <Link to="edit">Edit</Link>
+        <Link>Delete</Link>
+        <Link>Add to cart</Link>
       </div>
     </div>
   );

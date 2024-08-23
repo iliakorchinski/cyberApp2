@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import EventList from '../components/EventItem';
 export default function ProductsPage() {
   const data = useLoaderData();
-  console.log(data);
+  // console.log(data);
   return (
     <>
       <EventList data={data.products} />
@@ -15,7 +15,7 @@ export async function loader() {
   if (!responce.ok) {
     throw new Error('Could not fetch products');
   } else {
-    console.log(responce);
+    // console.log(responce);
     return responce;
   }
 }

@@ -17,6 +17,11 @@ export default function EventList({ data }) {
           );
         })}
       </ul>
+      <p className={classes['navigate-container']}>
+        <Link className={classes.navigate} to="new">
+          Add Item
+        </Link>
+      </p>
     </div>
   );
 }

@@ -2,7 +2,12 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 
-const { getAll, getProduct } = require('./data/products');
+const {
+  getAll,
+  getProduct,
+  replaceProduct,
+  newProduct,
+} = require('./data/products');
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,8 +30,30 @@ app.get('/products', async (req, res, next) => {
 
 app.get('/products/:id', async (req, res, next) => {
   const product = await getProduct(req.params.id);
-  console.log(product);
+  // console.log(product);
   res.json({ product: product });
+});
+
+app.patch('/products/:id/edit', async (req, res, next) => {
+  const data = req.body;
+  console.log(data);
+  try {
+    await replaceProduct(req.params.id, data);
+    res.json({ product: data });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/products/new', async (req, res, next) => {
+  const data = req.body;
+  console.log(data);
+  try {
+    await newProduct(data);
+    res.json({ product: data });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use((error, req, res, next) => {

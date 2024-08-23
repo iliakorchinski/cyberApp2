@@ -5,6 +5,10 @@ async function readData() {
   return JSON.parse(data);
 }
 
+async function writeData(data) {
+  await fs.writeFile('products.json', JSON.stringify(data));
+}
+
 async function getAll() {
   const products = await readData();
   if (!products) {
@@ -21,5 +25,25 @@ async function getProduct(id) {
   const product = products.products.find((product) => product.id === id);
   return product;
 }
+
+async function replaceProduct(id, data) {
+  const products = await readData();
+  if (!products.products || products.products.length === 0) {
+    throw new Error('Could not find any events.');
+  }
+  const index = products.products.findIndex((product) => product.id === id);
+
+  products.products[index] = { ...data, id };
+
+  await writeData(products);
+}
+
+async function newProduct(data) {
+  const products = await readData();
+  products.products.push(data);
+  await writeData(products);
+}
 exports.getAll = getAll;
 exports.getProduct = getProduct;
+exports.replaceProduct = replaceProduct;
+exports.newProduct = newProduct;

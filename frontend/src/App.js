@@ -7,6 +7,11 @@ import RootLayout from './pages/Root';
 import ProductDetails, {
   loader as ProductDetailsLoader,
 } from './pages/ProductDetails';
+import Login from './pages/Login';
+import { AuthProvider } from './util/auth';
+import EditProduct from './pages/EditProducts';
+import { action } from './components/ProductForm';
+import NewProduct, { action as newProductAction } from './pages/NewProduct';
 
 const router = createBrowserRouter([
   {
@@ -22,15 +27,30 @@ const router = createBrowserRouter([
       },
       {
         path: '/products/:id',
-        element: <ProductDetails />,
+        id: 'product-details',
+        // element: <ProductDetails />,
         loader: ProductDetailsLoader,
+        children: [
+          { index: true, element: <ProductDetails /> },
+          { path: 'edit', element: <EditProduct />, action: action },
+        ],
       },
+      {
+        path: '/products/new',
+        element: <NewProduct />,
+        action: newProductAction,
+      },
+      { path: 'login', element: <Login /> },
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;
