@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
-import EventList from '../components/EventItem';
+import EventList from '../components/EventList';
 export default function ProductsPage() {
   const data = useLoaderData();
   // console.log(data);

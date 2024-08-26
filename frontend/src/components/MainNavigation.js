@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
-import { useAuth } from '../util/auth';
-
+import { useSelector } from 'react-redux';
 export default function MainNavigation() {
-  const auth = useAuth();
-  console.log(auth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  console.log(isAuth);
   return (
     <header className={classes.header}>
       <h1 className={classes.title}>Cyber</h1>
@@ -51,7 +50,7 @@ export default function MainNavigation() {
             </NavLink>
           </li>
         </ul>
-        {auth.message ? <p>{auth.message}</p> : null}
+        {isAuth ? <p>You're logged in</p> : null}
       </nav>
     </header>
   );

@@ -1,13 +1,20 @@
-import { useState } from 'react';
-import { useAuth } from '../util/auth';
-import { Form, redirect, useActionData } from 'react-router-dom';
+import { Form, useActionData, redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../store/authSlice';
+import { useEffect } from 'react';
 
 export default function Login() {
   const data = useActionData();
   console.log(data);
+
+  const dispath = useDispatch();
   // const [user, setUser] = useState('');
   // const [password, setPassword] = useState('');
-  const auth = useAuth();
+  useEffect(() => {
+    if (data) {
+      dispath(login());
+    }
+  }, [data]);
 
   return (
     <Form method="post">
@@ -33,7 +40,7 @@ export default function Login() {
           required
         />
       </p>
-      <button onClick={() => auth.loginMessage(data)}>Submit</button>
+      <button>Submit</button>
     </Form>
   );
 }
