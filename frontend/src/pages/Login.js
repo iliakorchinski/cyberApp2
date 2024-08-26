@@ -1,41 +1,68 @@
 import { useState } from 'react';
 import { useAuth } from '../util/auth';
+import { Form, redirect, useActionData } from 'react-router-dom';
+
 export default function Login() {
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const data = useActionData();
+  console.log(data);
+  // const [user, setUser] = useState('');
+  // const [password, setPassword] = useState('');
   const auth = useAuth();
 
-  function handleChangeUser(e) {
-    setUser(e.target.value);
-  }
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
-
-  function handleSubmit() {
-    auth.login(user, password);
-    setUser('');
-    setPassword('');
-  }
-
   return (
-    <div>
+    <Form method="post">
       <p>
-        <label>Username</label>
-        <input type="text" onChange={handleChangeUser} value={user} required />
-      </p>
-      <p>
-        <label>Password</label>
+        <label htmlFor="username">Username</label>
         <input
-          type="password"
-          onChange={handleChangePassword}
-          value={password}
+          type="text"
+          id="username"
+          name="username"
+          // onChange={handleChangeUser}
+          // value={user}
           required
         />
       </p>
-      <button type="button" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+      <p>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          // onChange={handleChangePassword}
+          // value={password}
+          required
+        />
+      </p>
+      <button onClick={() => auth.loginMessage(data)}>Submit</button>
+    </Form>
   );
+}
+
+export async function action({ request, params }) {
+  const method = request.method;
+  const data = Object.fromEntries(await request.formData());
+  const enteredUser = {
+    username: data.username,
+    password: data.password,
+  };
+
+  const responce = await fetch('http://localhost:8080/login', {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(enteredUser),
+  });
+  console.log(responce);
+  if (!responce.ok) {
+    throw new Error('Could not authenticate user');
+  }
+
+  const resData = await responce.json();
+  if (resData) {
+    // redirect('/');
+    return resData.message;
+  }
+
+  return null;
 }

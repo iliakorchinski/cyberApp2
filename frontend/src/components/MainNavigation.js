@@ -51,7 +51,7 @@ export default function MainNavigation() {
             </NavLink>
           </li>
         </ul>
-        {auth.user && auth.password ? <p>Welcome, {auth.user}</p> : null}
+        {auth.message ? <p>{auth.message}</p> : null}
       </nav>
     </header>
   );

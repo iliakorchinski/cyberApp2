@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "title": "Iphone 17",
+      "title": "Iphone 17!!!",
       "image": "https://www.cnet.com/a/img/resize/e21b3371c11612c4e14928a6a237e7b0889745f8/hub/2023/09/12/2d9d37cc-7d99-4f81-8da2-8f3a674f4243/screenshot-2023-09-12-at-10-38-30-am.png?auto=webp&width=1200",
       "description": "Awesome iphone 189",
       "id": "item1"
@@ -31,10 +31,17 @@
       "id": "item5"
     },
     {
-      "title": "ilia",
+      "title": "ilia krassavchic",
       "image": "https://www.cnet.com/a/img/resize/e21b3371c11612c4e14928a6a237e7b0889745f8/hub/2023/09/12/2d9d37cc-7d99-4f81-8da2-8f3a674f4243/screenshot-2023-09-12-at-10-38-30-am.png?auto=webp&width=1200",
       "description": "asdfasdf",
       "id": "0.9415529921386134"
+    },
+    {
+      "title": "asdfasdf",
+      "image": "https://www.cnet.com/a/img/resize/e21b3371c11612c4e14928a6a237e7b0889745f8/hub/2023/09/12/2d9d37cc-7d99-4f81-8da2-8f3a674f4243/screenshot-2023-09-12-at-10-38-30-am.png?auto=webp&width=1200",
+      "description": "adsfasdfasdf",
+      "id": "0.9768965486019332"
     }
-  ]
+  ],
+  "users": [{ "username": "ilia", "password": "123" }]
 }

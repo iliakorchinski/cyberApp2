@@ -5,6 +5,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [password, setPassword] = useState(null);
+  const [message, setMessage] = useState('');
 
   function login(user, password) {
     setUser(user);
@@ -14,8 +15,13 @@ export function AuthProvider({ children }) {
     setUser(null);
     setPassword(null);
   }
+  function loginMessage(message) {
+    setMessage(message);
+  }
   return (
-    <AuthContext.Provider value={{ user, password, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, password, message, loginMessage, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

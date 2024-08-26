@@ -9,6 +9,8 @@ const {
   newProduct,
 } = require('./data/products');
 
+const { login } = require('./data/authentication');
+
 const app = express();
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -51,6 +53,18 @@ app.post('/products/new', async (req, res, next) => {
   try {
     await newProduct(data);
     res.json({ product: data });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/login', async (req, res, next) => {
+  const data = req.body;
+  console.log(data);
+  try {
+    const authorizedUser = await login(data.username, data.password);
+    console.log(authorizedUser);
+    res.json({ message: `You are logged as ${authorizedUser.username}` });
   } catch (err) {
     next(err);
   }

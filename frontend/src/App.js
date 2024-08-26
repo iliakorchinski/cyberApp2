@@ -7,7 +7,7 @@ import RootLayout from './pages/Root';
 import ProductDetails, {
   loader as ProductDetailsLoader,
 } from './pages/ProductDetails';
-import Login from './pages/Login';
+import Login, { action as loginAction } from './pages/Login';
 import { AuthProvider } from './util/auth';
 import EditProduct from './pages/EditProducts';
 import { action } from './components/ProductForm';
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <NewProduct />,
         action: newProductAction,
       },
-      { path: 'login', element: <Login /> },
+      { path: 'login', element: <Login />, action: loginAction },
     ],
   },
 ]);

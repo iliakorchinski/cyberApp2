@@ -1,13 +1,13 @@
-const fs = require('node:fs/promises');
+const { readData, writeData } = require('./util');
 
-async function readData() {
-  const data = await fs.readFile('products.json', 'utf8');
-  return JSON.parse(data);
-}
+// async function readData() {
+//   const data = await fs.readFile('products.json', 'utf8');
+//   return JSON.parse(data);
+// }
 
-async function writeData(data) {
-  await fs.writeFile('products.json', JSON.stringify(data));
-}
+// async function writeData(data) {
+//   await fs.writeFile('products.json', JSON.stringify(data));
+// }
 
 async function getAll() {
   const products = await readData();
